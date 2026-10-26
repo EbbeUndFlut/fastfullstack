@@ -1,0 +1,210 @@
+/* ==========================================================
+   Mein Netzwerkbusiness – Modern Minimalist Theme
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #111111;
+    --muted: #77777a;
+    --line: #e6e6e3;
+    --accent: #111111;
+    --accent-text: #ffffff;
+    --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0e0e0e;
+        --surface: #151515;
+        --text: #f2f2f0;
+        --muted: #8a8a8e;
+        --line: #262626;
+        --accent: #f2f2f0;
+        --accent-text: #0e0e0e;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    padding: clamp(1.5rem, 6vw, 5rem);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Titel ---------- */
+body::before {
+    content: 'Mein Netzwerkbusiness';
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto clamp(2.5rem, 6vw, 5rem);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+}
+
+/* ---------- Liste ---------- */
+.productlist {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    counter-reset: item;
+}
+
+/* ---------- Karte ---------- */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 220px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    background: var(--surface);
+    counter-increment: item;
+    transition: background 0.3s ease;
+    animation: fade 0.6s ease both;
+}
+
+.container:nth-child(2n) {
+    animation-delay: 0.05s;
+}
+
+.container:nth-child(3n) {
+    animation-delay: 0.1s;
+}
+
+.container:nth-child(4n) {
+    animation-delay: 0.15s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Linie, die beim Hover von links einläuft */
+.container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.container:hover::after {
+    transform: scaleX(1);
+}
+
+/* ---------- Name ---------- */
+.container>div:first-child {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+/* Laufende Nummer */
+.container>div:first-child::before {
+    content: counter(item, decimal-leading-zero);
+    display: block;
+    margin-bottom: 1.25rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Beschreibung ---------- */
+.description {
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+/* ---------- Preis ---------- */
+.container>div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Pfeil, der beim Hover nach rechts wandert */
+.container>div:last-child::after {
+    content: '→';
+    font-weight: 300;
+    color: var(--muted);
+    transform: translateX(-6px);
+    opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease, color 0.35s ease;
+}
+
+.container:hover>div:last-child::after {
+    transform: translateX(0);
+    opacity: 1;
+    color: var(--text);
+}
+
+/* ---------- Details ---------- */
+::selection {
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
+@media (max-width: 520px) {
+    .productlist {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}

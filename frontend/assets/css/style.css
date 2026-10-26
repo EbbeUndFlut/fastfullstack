@@ -1,0 +1,325 @@
+/* ==========================================================
+   Mein Netzwerkbusiness – Dark Tech / Glassmorphism Theme
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+    --bg: #070a14;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #e8ecf7;
+    --muted: #8b93ad;
+    --cyan: #22d3ee;
+    --violet: #8b5cf6;
+    --pink: #ec4899;
+    --radius: 22px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    padding: clamp(1.5rem, 5vw, 4rem);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ---------- Animierter Aurora-Hintergrund ---------- */
+body::after {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    z-index: -2;
+    background:
+        radial-gradient(40% 40% at 15% 20%, rgba(139, 92, 246, 0.35), transparent 70%),
+        radial-gradient(35% 35% at 85% 15%, rgba(34, 211, 238, 0.28), transparent 70%),
+        radial-gradient(45% 45% at 70% 90%, rgba(236, 72, 153, 0.22), transparent 70%);
+    filter: blur(40px);
+    animation: aurora 18s ease-in-out infinite alternate;
+}
+
+/* feines Grid-Muster darüber */
+body::before {
+    content: 'Mein Netzwerkbusiness';
+    display: block;
+    text-align: center;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink), var(--cyan));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 8s linear infinite;
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.45));
+}
+
+@keyframes aurora {
+    from {
+        transform: translate3d(-3%, -2%, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(3%, 3%, 0) scale(1.15);
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: 300% 0;
+    }
+}
+
+/* ---------- Produktliste ---------- */
+.productlist {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+    counter-reset: item;
+}
+
+/* ---------- Karte ---------- */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.75rem 1.5rem 1.5rem;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    isolation: isolate;
+    counter-increment: item;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* gestaffeltes Einblenden */
+.container:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.container:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.container:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.container:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.container:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+.container:nth-child(6) {
+    animation-delay: 0.40s;
+}
+
+.container:nth-child(7) {
+    animation-delay: 0.47s;
+}
+
+.container:nth-child(8) {
+    animation-delay: 0.54s;
+}
+
+.container:nth-child(9) {
+    animation-delay: 0.61s;
+}
+
+.container:nth-child(10) {
+    animation-delay: 0.68s;
+}
+
+@keyframes rise {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* leuchtende Farbkante oben */
+.container::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+    opacity: 0.7;
+    transition: opacity 0.35s, height 0.35s;
+}
+
+/* Glow-Blob, der beim Hover erscheint */
+.container::after {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: -120px;
+    right: -100px;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.45), transparent 70%);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.container:hover {
+    transform: translateY(-8px) scale(1.015);
+    border-color: rgba(139, 92, 246, 0.55);
+    box-shadow:
+        0 25px 60px -20px rgba(139, 92, 246, 0.55),
+        0 0 0 1px rgba(34, 211, 238, 0.15);
+}
+
+.container:hover::before {
+    opacity: 1;
+    height: 4px;
+}
+
+.container:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ---------- Name (erstes div) ---------- */
+.container>div:first-child {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    padding-right: 3rem;
+}
+
+/* Laufende Nummer als Chip-Label */
+.container>div:first-child::before {
+    content: '#' counter(item, decimal-leading-zero);
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 12px rgba(34, 211, 238, 0.7);
+}
+
+/* ---------- Beschreibung ---------- */
+.description {
+    flex: 1;
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.55;
+    padding-bottom: 0.5rem;
+}
+
+/* ---------- Preis (letztes div) ---------- */
+.container>div:last-child {
+    align-self: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    box-shadow: 0 8px 24px -8px rgba(236, 72, 153, 0.7);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Glanz-Streifen, der über den Preis wischt */
+.container>div:last-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: skewX(-20deg);
+}
+
+.container:hover>div:last-child {
+    transform: scale(1.06);
+    box-shadow: 0 12px 30px -8px rgba(236, 72, 153, 0.9);
+}
+
+.container:hover>div:last-child::after {
+    left: 130%;
+    transition: left 0.8s ease;
+}
+
+/* ---------- Scrollbar & Auswahl ---------- */
+::selection {
+    background: var(--violet);
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--violet), var(--cyan));
+    border-radius: 10px;
+}
+
+/* ---------- Barrierefreiheit ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .container {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .productlist {
+        grid-template-columns: 1fr;
+    }
+}

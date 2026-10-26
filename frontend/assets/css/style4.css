@@ -1,0 +1,495 @@
+/* ==========================================================
+   Mein Netzwerkbusiness – MATRIX / ASCII TERMINAL EDITION
+   Wake up, Neo...
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --g: #00ff41;
+    --g-dim: #00a82b;
+    --g-dark: #003b0f;
+    --black: #000800;
+    --glow: 0 0 6px rgba(0, 255, 65, 0.75), 0 0 18px rgba(0, 255, 65, 0.35);
+
+    /* Matrix-Regen: eine SVG-Kachel aus senkrechten ASCII-Spalten */
+    --rain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='320'%3E%3Cg font-family='monospace' font-size='14' fill='%2300ff41' style='writing-mode:vertical-rl;text-orientation:upright'%3E%3Ctext x='10' y='0'%3E10110ZX01$+%3C/text%3E%3Ctext x='30' y='60' fill-opacity='0.6'%3E0xA7F3%7C=:;1%3C/text%3E%3Ctext x='50' y='20'%3EN3TW0RK_01101%3C/text%3E%3Ctext x='70' y='110' fill-opacity='0.5'%3E%7C/-+*1001%3C/text%3E%3Ctext x='90' y='0'%3E11001010ABCDEF%3C/text%3E%3Ctext x='110' y='80' fill-opacity='0.7'%3ER0UT3R_$W1TCH%3C/text%3E%3Ctext x='130' y='30' fill-opacity='0.5'%3E0101:=+-1001%3C/text%3E%3Ctext x='150' y='150'%3EPING0xFF127%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: var(--black);
+    cursor: crosshair;
+}
+
+/* ---------- Matrix-Regen: zwei Ebenen, verschiedene Geschwindigkeit ---------- */
+html::before,
+html::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--rain);
+    background-repeat: repeat;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+html::before {
+    opacity: 0.22;
+    background-size: 160px 320px;
+    animation: rain-a 7s linear infinite;
+}
+
+html::after {
+    opacity: 0.12;
+    background-size: 240px 480px;
+    animation: rain-b 13s linear infinite;
+}
+
+@keyframes rain-a {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 320px;
+    }
+}
+
+@keyframes rain-b {
+    from {
+        background-position: 70px 0;
+    }
+
+    to {
+        background-position: 70px 480px;
+    }
+}
+
+/* ---------- Body ---------- */
+body {
+    min-height: 100vh;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.3rem;
+    line-height: 1.25;
+    color: var(--g);
+    text-shadow: var(--glow);
+    padding: clamp(1.5rem, 5vw, 4rem);
+    overflow-x: hidden;
+}
+
+/* ---------- Titel: Tipp-Animation + Cursor + Glitch ---------- */
+body::before {
+    content: '> MEIN_NETZWERKBUSINESS.EXE';
+    display: block;
+    width: 27ch;
+    max-width: 100%;
+    margin: 0 auto 0 0;
+    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: clamp(1.8rem, 5.2vw, 3.6rem);
+    letter-spacing: 0.04em;
+    border-right: 0.5ch solid var(--g);
+    animation:
+        typing 2.4s steps(27, end) both,
+        caret 0.8s step-end infinite,
+        glitch-title 5s infinite 3s;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 27ch;
+    }
+}
+
+@keyframes caret {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes glitch-title {
+
+    0%,
+    90%,
+    100% {
+        text-shadow: var(--glow);
+        transform: none;
+    }
+
+    91% {
+        text-shadow: -3px 0 #ff0040, 3px 0 #00e5ff;
+        transform: translateX(3px) skewX(-8deg);
+    }
+
+    93% {
+        text-shadow: 3px 0 #ff0040, -3px 0 #00e5ff;
+        transform: translateX(-4px);
+    }
+
+    95% {
+        text-shadow: -2px 0 #ff0040, 2px 0 #00e5ff;
+        transform: translateX(2px) skewX(6deg);
+    }
+
+    97% {
+        text-shadow: var(--glow);
+        transform: none;
+    }
+}
+
+/* ---------- CRT-Overlay: Scanlines, Vignette, laufender Balken, Flackern ---------- */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    background:
+        linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.09), transparent) 0 -120px / 100% 120px no-repeat,
+        radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.75) 100%),
+        repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.28) 0, rgba(0, 0, 0, 0.28) 1px, transparent 1px, transparent 3px);
+    animation: scanband 6s linear infinite, flicker 0.12s steps(2) infinite alternate;
+}
+
+@keyframes scanband {
+    from {
+        background-position: 0 -120px, 0 0, 0 0;
+    }
+
+    to {
+        background-position: 0 100vh, 0 0, 0 0;
+    }
+}
+
+@keyframes flicker {
+    from {
+        opacity: 0.92;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ---------- Grid ---------- */
+.productlist {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2.4rem 2rem;
+    counter-reset: item;
+}
+
+/* ---------- Karte: ASCII-Rahmen aus + und - ---------- */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.3rem 1.3rem 1.2rem;
+    background: rgba(0, 18, 4, 0.82);
+    border: 1px dashed var(--g);
+    counter-increment: item;
+    animation: boot 0.9s steps(1, end) both;
+    transition: background 0.15s steps(2), box-shadow 0.15s steps(2);
+}
+
+/* Ecken oben (+ +) und unten (+ +) per Blocksatz an die Ränder gedrückt */
+.container::before,
+.container::after {
+    content: '+ +';
+    position: absolute;
+    left: -0.32em;
+    right: -0.32em;
+    height: 1em;
+    line-height: 1;
+    font-size: 1.5rem;
+    text-align: justify;
+    text-align-last: justify;
+    color: var(--g);
+    pointer-events: none;
+}
+
+.container::before {
+    top: -0.5em;
+}
+
+.container::after {
+    bottom: -0.5em;
+}
+
+/* Boot-Reihenfolge: Karten flackern nacheinander an */
+.container:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.container:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.container:nth-child(3) {
+    animation-delay: 1.1s;
+}
+
+.container:nth-child(4) {
+    animation-delay: 1.4s;
+}
+
+.container:nth-child(5) {
+    animation-delay: 1.7s;
+}
+
+.container:nth-child(6) {
+    animation-delay: 2.0s;
+}
+
+.container:nth-child(7) {
+    animation-delay: 2.3s;
+}
+
+.container:nth-child(8) {
+    animation-delay: 2.6s;
+}
+
+.container:nth-child(9) {
+    animation-delay: 2.9s;
+}
+
+.container:nth-child(10) {
+    animation-delay: 3.2s;
+}
+
+@keyframes boot {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    40% {
+        opacity: 0.1;
+    }
+
+    55% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 0.3;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.container:hover {
+    background: rgba(0, 255, 65, 0.1);
+    border-style: solid;
+    box-shadow: 0 0 28px rgba(0, 255, 65, 0.35), inset 0 0 30px rgba(0, 255, 65, 0.12);
+    animation: glitch-card 0.35s steps(2, end) 1;
+}
+
+@keyframes glitch-card {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-4px, 1px) skewX(-3deg);
+    }
+
+    40% {
+        transform: translate(4px, -2px);
+    }
+
+    60% {
+        transform: translate(-2px, 2px) skewX(2deg);
+    }
+
+    80% {
+        transform: translate(2px, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* ---------- Name ---------- */
+.container>div:first-child {
+    font-size: 1.9rem;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.container>div:first-child::before {
+    content: 'ITEM_' counter(item, decimal-leading-zero) ' :: ONLINE';
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--g-dim);
+    text-shadow: none;
+}
+
+/* Blinkender Cursor hinter dem Namen beim Hover */
+.container>div:first-child::after {
+    content: '_';
+    opacity: 0;
+}
+
+.container:hover>div:first-child::after {
+    opacity: 1;
+    animation: caret-blink 0.6s step-end infinite;
+}
+
+@keyframes caret-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ---------- Beschreibung ---------- */
+.description {
+    flex: 1;
+    font-size: 1.2rem;
+    color: var(--g-dim);
+    text-shadow: none;
+    padding-bottom: 0.4rem;
+}
+
+.description::before {
+    content: '// ';
+    color: var(--g);
+}
+
+.container:hover .description {
+    color: var(--g);
+    text-shadow: var(--glow);
+}
+
+/* ---------- Preis: [ 89.99€ ] ---------- */
+.container>div:last-child {
+    align-self: flex-start;
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.1rem 0.4rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+    animation: price-blink 3s steps(1) infinite;
+}
+
+.container>div:last-child::before {
+    content: '[ ';
+}
+
+.container>div:last-child::after {
+    content: ' ]';
+}
+
+@keyframes price-blink {
+
+    0%,
+    94%,
+    100% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.2;
+    }
+
+    97% {
+        opacity: 1;
+    }
+
+    98% {
+        opacity: 0.4;
+    }
+}
+
+.container:hover>div:last-child {
+    background: var(--g);
+    color: var(--black);
+    text-shadow: none;
+    animation: none;
+}
+
+/* ---------- Kleinkram ---------- */
+::selection {
+    background: var(--g);
+    color: var(--black);
+    text-shadow: none;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+    border-left: 1px dashed var(--g-dim);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--g);
+    border: 2px solid var(--black);
+}
+
+@media (max-width: 520px) {
+    .productlist {
+        grid-template-columns: 1fr;
+    }
+
+    body::before {
+        width: 27ch;
+        font-size: 1.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    body::before {
+        width: auto;
+    }
+}

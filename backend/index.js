@@ -7,6 +7,17 @@ app.use(cors())
 // app.use(myCors)
 const PORT = 9898
 
+app.get('/hersteller/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const erg = db.hersteller.filter(ele => ele.id === id)
+    console.log(erg)
+    res.json(erg[0])
+})
+app.get('/kategorie/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const erg = db.kategorien.filter(ele => ele.id === id)
+    res.json(erg[0])
+})
 app.get('/produkte', (req, res) => {
     res.json(db.produkte)
 })
