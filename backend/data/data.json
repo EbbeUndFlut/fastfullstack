@@ -1,0 +1,313 @@
+{
+    "hersteller": [
+        {
+            "id": 1,
+            "name": "TP-Link",
+            "land": "China"
+        },
+        {
+            "id": 2,
+            "name": "Cisco",
+            "land": "USA"
+        },
+        {
+            "id": 3,
+            "name": "ASUS",
+            "land": "Taiwan"
+        },
+        {
+            "id": 4,
+            "name": "AMD",
+            "land": "USA"
+        },
+        {
+            "id": 5,
+            "name": "Intel",
+            "land": "USA"
+        },
+        {
+            "id": 6,
+            "name": "Samsung",
+            "land": "Südkorea"
+        },
+        {
+            "id": 7,
+            "name": "Corsair",
+            "land": "USA"
+        },
+        {
+            "id": 8,
+            "name": "Western Digital",
+            "land": "USA"
+        }
+    ],
+    "kategorien": [
+        {
+            "id": 1,
+            "name": "Router",
+            "bereich": "Netzwerk"
+        },
+        {
+            "id": 2,
+            "name": "Switch",
+            "bereich": "Netzwerk"
+        },
+        {
+            "id": 3,
+            "name": "Access Point",
+            "bereich": "Netzwerk"
+        },
+        {
+            "id": 4,
+            "name": "Netzwerkkarte",
+            "bereich": "Netzwerk"
+        },
+        {
+            "id": 5,
+            "name": "Prozessor",
+            "bereich": "PC-Komponenten"
+        },
+        {
+            "id": 6,
+            "name": "Grafikkarte",
+            "bereich": "PC-Komponenten"
+        },
+        {
+            "id": 7,
+            "name": "Arbeitsspeicher",
+            "bereich": "PC-Komponenten"
+        },
+        {
+            "id": 8,
+            "name": "SSD",
+            "bereich": "PC-Komponenten"
+        },
+        {
+            "id": 9,
+            "name": "Mainboard",
+            "bereich": "PC-Komponenten"
+        },
+        {
+            "id": 10,
+            "name": "Netzteil",
+            "bereich": "PC-Komponenten"
+        }
+    ],
+    "produkte": [
+        {
+            "id": 1001,
+            "artikelnummer": "NET-0001",
+            "name": "Archer AX55",
+            "hersteller_id": 1,
+            "kategorie_id": 1,
+            "beschreibung": "WLAN-Router mit Wi-Fi 6",
+            "technische_daten": {
+                "wlan_standard": "Wi-Fi 6",
+                "max_wlan_rate_mbit_s": 3000,
+                "lan_ports": 4
+            },
+            "preis_eur": 89.99,
+            "lagerbestand": 24,
+            "lagerort": "A-01-01",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1002,
+            "artikelnummer": "NET-0002",
+            "name": "TL-SG108",
+            "hersteller_id": 1,
+            "kategorie_id": 2,
+            "beschreibung": "Unmanaged Gigabit Ethernet Switch",
+            "technische_daten": {
+                "ports": 8,
+                "port_geschwindigkeit_mbit_s": 1000,
+                "management": false
+            },
+            "preis_eur": 24.99,
+            "lagerbestand": 40,
+            "lagerort": "A-01-02",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1003,
+            "artikelnummer": "NET-0003",
+            "name": "CBS350-24T-4G",
+            "hersteller_id": 2,
+            "kategorie_id": 2,
+            "beschreibung": "Managed Business Ethernet Switch",
+            "technische_daten": {
+                "ports": 24,
+                "port_geschwindigkeit_mbit_s": 1000,
+                "uplink_ports": 4,
+                "management": true
+            },
+            "preis_eur": 429.00,
+            "lagerbestand": 7,
+            "lagerort": "A-02-01",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1004,
+            "artikelnummer": "NET-0004",
+            "name": "EAP610",
+            "hersteller_id": 1,
+            "kategorie_id": 3,
+            "beschreibung": "Deckenmontierbarer WLAN-Access-Point",
+            "technische_daten": {
+                "wlan_standard": "Wi-Fi 6",
+                "poe": true,
+                "max_wlan_rate_mbit_s": 1800
+            },
+            "preis_eur": 99.90,
+            "lagerbestand": 12,
+            "lagerort": "A-02-02",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1005,
+            "artikelnummer": "NET-0005",
+            "name": "XG-C100C",
+            "hersteller_id": 3,
+            "kategorie_id": 4,
+            "beschreibung": "PCIe-Netzwerkkarte mit 10-Gigabit-Ethernet",
+            "technische_daten": {
+                "schnittstelle": "PCIe",
+                "geschwindigkeit_mbit_s": 10000,
+                "anschluss": "RJ45"
+            },
+            "preis_eur": 89.90,
+            "lagerbestand": 9,
+            "lagerort": "A-03-01",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1006,
+            "artikelnummer": "CPU-0001",
+            "name": "Ryzen 7 7800X3D",
+            "hersteller_id": 4,
+            "kategorie_id": 5,
+            "beschreibung": "Desktop-Prozessor für Gaming und anspruchsvolle Anwendungen",
+            "technische_daten": {
+                "kerne": 8,
+                "threads": 16,
+                "sockel": "AM5",
+                "basis_takt_ghz": 4.2,
+                "max_takt_ghz": 5.0
+            },
+            "preis_eur": 379.00,
+            "lagerbestand": 6,
+            "lagerort": "B-01-01",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1007,
+            "artikelnummer": "GPU-0001",
+            "name": "GeForce RTX 4070 SUPER",
+            "hersteller_id": 3,
+            "kategorie_id": 6,
+            "beschreibung": "Grafikkarte für Gaming und Content Creation",
+            "technische_daten": {
+                "vram_gb": 12,
+                "speichertyp": "GDDR6X",
+                "schnittstelle": "PCIe 4.0",
+                "empfohlene_netzteil_leistung_w": 650
+            },
+            "preis_eur": 649.00,
+            "lagerbestand": 4,
+            "lagerort": "B-01-02",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1008,
+            "artikelnummer": "RAM-0001",
+            "name": "Vengeance DDR5 32GB",
+            "hersteller_id": 7,
+            "kategorie_id": 7,
+            "beschreibung": "DDR5-Arbeitsspeicherkit mit 32 GB Kapazität",
+            "technische_daten": {
+                "kapazitaet_gb": 32,
+                "speichertyp": "DDR5",
+                "takt_mhz": 6000,
+                "module": 2
+            },
+            "preis_eur": 109.90,
+            "lagerbestand": 18,
+            "lagerort": "B-02-01",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1009,
+            "artikelnummer": "SSD-0001",
+            "name": "990 PRO 2TB",
+            "hersteller_id": 6,
+            "kategorie_id": 8,
+            "beschreibung": "NVMe-SSD für hohe Lese- und Schreibgeschwindigkeiten",
+            "technische_daten": {
+                "kapazitaet_gb": 2000,
+                "schnittstelle": "PCIe 4.0 x4",
+                "formfaktor": "M.2 2280"
+            },
+            "preis_eur": 159.90,
+            "lagerbestand": 15,
+            "lagerort": "B-02-02",
+            "status": "verfuegbar"
+        },
+        {
+            "id": 1010,
+            "artikelnummer": "SSD-0002",
+            "name": "WD Black SN850X 1TB",
+            "hersteller_id": 8,
+            "kategorie_id": 8,
+            "beschreibung": "NVMe-SSD für Desktop-PCs",
+            "technische_daten": {
+                "kapazitaet_gb": 1000,
+                "schnittstelle": "PCIe 4.0 x4",
+                "formfaktor": "M.2 2280"
+            },
+            "preis_eur": 99.90,
+            "lagerbestand": 11,
+            "lagerort": "B-02-03",
+            "status": "verfuegbar"
+        }
+    ],
+    "lagerbewegungen": [
+        {
+            "id": 1,
+            "produkt_id": 1001,
+            "typ": "eingang",
+            "menge": 30,
+            "datum": "2026-10-20",
+            "referenz": "BEST-2026-001"
+        },
+        {
+            "id": 2,
+            "produkt_id": 1001,
+            "typ": "ausgang",
+            "menge": 6,
+            "datum": "2026-10-22",
+            "referenz": "AUF-2026-001"
+        },
+        {
+            "id": 3,
+            "produkt_id": 1006,
+            "typ": "ausgang",
+            "menge": 2,
+            "datum": "2026-10-24",
+            "referenz": "AUF-2026-002"
+        }
+    ],
+    "lieferanten": [
+        {
+            "id": 1,
+            "name": "TechSupply GmbH",
+            "email": "bestellung@techsupply.example",
+            "land": "Deutschland"
+        },
+        {
+            "id": 2,
+            "name": "HardwareDirekt GmbH",
+            "email": "einkauf@hardwaredirekt.example",
+            "land": "Deutschland"
+        }
+    ]
+}
